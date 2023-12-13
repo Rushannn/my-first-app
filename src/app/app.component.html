@@ -1,4 +1,6 @@
-<span>Привет Я компонент {{name}}</span>
-<br>
+<span>Привет Я компонент {{ name }}</span>
+<br />
 
-<input type="text" [(ngModel)]="name">
+<input type="text" [(ngModel)]="name" />
+
+<app-cards-list [todoList]="todoListMain"></app-cards-list>
