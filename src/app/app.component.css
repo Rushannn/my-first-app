@@ -1,3 +1,5 @@
-span {
-  color: red;
+.content {
+  display: flex;
+  gap: 20px;
+  padding: 0 20px;
 }

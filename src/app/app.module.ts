@@ -5,16 +5,22 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { CardsListComponent } from './cards-list/cards-list.component';
 import { CardComponent } from './card/card.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { CardEditComponent } from './card-edit/card-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardsListComponent,
-    CardComponent
+    CardComponent,
+    CardEditComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

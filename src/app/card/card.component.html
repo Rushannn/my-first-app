@@ -1,5 +1,18 @@
-<div class="wrapper">
+<!-- <div class="wrapper">
   <p>{{todo.name}}</p>
   <p>{{todo.date}}</p>
   <p>{{todo.type}}</p>
-</div>
+</div> -->
+
+<ng-container *ngIf="todo">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ todo.name }}</mat-card-title>
+      <mat-card-subtitle>{{ todo.date }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-button (click)="onEdit()">Edit</button>
+      <button mat-button (click)="onDelete()">Delete</button>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>
