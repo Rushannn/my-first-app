@@ -1,5 +1,6 @@
 export interface ITodo {
-  name: string,
-  date: string,
-  type: "done" | "new"
+  name: string;
+  date: string;
+  type: 'done' | 'new';
+  id: number;
 }

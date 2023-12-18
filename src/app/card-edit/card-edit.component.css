@@ -1,0 +1,12 @@
+input {
+  width: 100px;
+  height: 35px;
+  border-radius: 6px;
+}
+
+.input1 {
+  margin-left: 18px;
+}
+.input2 {
+  margin-left: 30px;
+}
