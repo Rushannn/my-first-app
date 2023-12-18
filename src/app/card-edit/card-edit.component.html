@@ -2,8 +2,25 @@
   <mat-card>
     <mat-card-header>
       <mat-card-title>{{ todoToEdit.name }}</mat-card-title>
-      <mat-card-subtitle>{{ todoToEdit.date }}</mat-card-subtitle>
+      <input
+        [(ngModel)]="name"
+        class="input1"
+        type="text"
+        name="name"
+        placeholder="{{ todoToEdit.name }}"
+      />
     </mat-card-header>
+    <mat-card-header>
+      <mat-card-subtitle>{{ todoToEdit.date }}</mat-card-subtitle>
+      <input
+        [(ngModel)]="date"
+        class="input2"
+        type="text"
+        name="date"
+        placeholder="{{ todoToEdit.date }}"
+      />
+    </mat-card-header>
+    <button (click)="saveEdit()">Seve</button>
     <mat-card-actions>
       <!-- <button mat-button (click)="onEdit()">Edit</button>
       <button mat-button (click)="onDelete()">Delete</button> -->
