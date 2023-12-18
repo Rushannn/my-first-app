@@ -1,6 +1,7 @@
 export interface ITodo {
-  name: string;
-  date: string;
-  type: 'done' | 'new';
-  id: number;
+  created_at: number
+  date: string
+  id: number
+  isDone: boolean
+  name: string
 }

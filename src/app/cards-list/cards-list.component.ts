@@ -7,7 +7,7 @@ import { ITodo } from '../core/models/ITodo.model';
   styleUrls: ['./cards-list.component.css']
 })
 export class CardsListComponent {
-  @Input() todoList: ITodo[] | undefined;
+  @Input() todoList: any;
   @Output() deleteCard: EventEmitter<ITodo> = new EventEmitter<ITodo>()
   @Output() editCard: EventEmitter<ITodo> = new EventEmitter<ITodo>()
 

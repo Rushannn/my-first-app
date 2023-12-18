@@ -8,6 +8,7 @@ import { CardComponent } from './card/card.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CardEditComponent } from './card-edit/card-edit.component';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CardEditComponent } from './card-edit/card-edit.component';
     BrowserModule,
     FormsModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

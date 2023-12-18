@@ -1,61 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ITodo } from './core/models/ITodo.model';
+import { TodoService } from './core/services/todo.service';
+import { Subject, takeUntil } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'my-first-app';
   name!: string;
   cardToEdit: ITodo | undefined;
   todoClickInfo?: ITodo;
 
-  todoListMain: ITodo[] = [
-    {
-      name: 'Задача 1',
-      date: '2023-12-01',
-      type: 'done',
-      id: 1,
-    },
-    {
-      name: 'Задача 2',
-      date: '2023-12-02',
-      type: 'new',
-      id: 2,
-    },
-    {
-      name: 'Задача 3',
-      date: '2023-12-03',
-      type: 'done',
-      id: 3,
-    },
-    {
-      name: 'Задача 4',
-      date: '2023-12-04',
-      type: 'new',
-      id: 4,
-    },
-    {
-      name: 'Задача 5',
-      date: '2023-12-05',
-      type: 'new',
-      id: 5,
-    },
-    {
-      name: 'Задача 6',
-      date: '2023-12-06',
-      type: 'done',
-      id: 6,
-    },
-  ];
+  todoListMain: ITodo[] = [];
   $event1: any;
+  private unsubscribe$ = new Subject<void>();
+
+  constructor(
+    private readonly todoService: TodoService,
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.getTodo();
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 
   onDeleteCard(todo: ITodo) {
-    this.todoListMain = this.todoListMain.filter(
-      (item) => item.name !== todo.name
-    );
+    this.deleteTodo(todo.id);
   }
 
   onEditCard(todo: ITodo) {
@@ -68,5 +48,32 @@ export class AppComponent {
         thisTodo = todo;
       }
     });
+  }
+
+  getTodo() {
+    this.todoService.getTodo()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        (res) => {
+          console.log('res', res);
+          this.todoListMain = res;
+        },
+        (err) => {
+          console.error('Error', err);
+        }
+      );
+  }
+
+  deleteTodo(id: number) {
+    this.todoService.deleteTodo(id)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        (res) => {
+          this.getTodo();
+        },
+        (err) => {
+          console.error('Error', err);
+        }
+      );
   }
 }
