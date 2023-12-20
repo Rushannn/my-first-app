@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ITodo } from '../core/models/ITodo.model';
+import { ITodo } from '../../core/models/ITodo.model';
 
 @Component({
   selector: 'app-cards-list',

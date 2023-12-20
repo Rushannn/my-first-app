@@ -1,0 +1,8 @@
+<div class="container">
+  <app-card
+    *ngFor="let todo of todoList"
+    [todo]="todo"
+    (deleteCard)="onDelete($event)"
+    (editCard)="onEdit(todo)"
+  ></app-card>
+</div>

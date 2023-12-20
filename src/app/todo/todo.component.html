@@ -1,0 +1,13 @@
+<p>todo works!</p>
+<div class="content">
+  <app-cards-list
+    [todoList]="todoListMain"
+    (deleteCard)="onDeleteCard($event)"
+    (editCard)="onEditCard($event)"
+  ></app-cards-list>
+
+  <app-card-edit
+    [todoToEdit]="cardToEdit"
+    (editCard1)="saveEdit($event)"
+  ></app-card-edit>
+</div>

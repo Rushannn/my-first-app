@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { ITodo } from "../core/models/ITodo.model";
+import { ITodo } from "../../core/models/ITodo.model";
 
 @Component({
   selector: 'app-card',
@@ -24,6 +24,10 @@ export class CardComponent implements OnInit {
   onDelete() {
     this.deleteCard.emit(this.todo);
     // console.log('todo', this.todo)
+  }
+
+  onToggleIsDone(event: any) {
+    console.log('event', event)
   }
 
 

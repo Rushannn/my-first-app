@@ -6,7 +6,7 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core';
-import { ITodo } from '../core/models/ITodo.model';
+import { ITodo } from '../../core/models/ITodo.model';
 import { NgIf } from '@angular/common';
 
 @Component({
