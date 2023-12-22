@@ -8,8 +8,9 @@ import { ITodo } from '../../core/models/ITodo.model';
 })
 export class CardsListComponent {
   @Input() todoList: any;
-  @Output() deleteCard: EventEmitter<ITodo> = new EventEmitter<ITodo>()
-  @Output() editCard: EventEmitter<ITodo> = new EventEmitter<ITodo>()
+  @Output() deleteCard: EventEmitter<ITodo> = new EventEmitter<ITodo>();
+  @Output() editCard: EventEmitter<ITodo> = new EventEmitter<ITodo>();
+  @Output() toggleIsDone = new EventEmitter<ITodo>();
 
   onDelete(todo: ITodo) {
     this.deleteCard.emit(todo);
@@ -18,5 +19,9 @@ export class CardsListComponent {
 
   onEdit(todo: ITodo) {
     this.editCard.emit(todo);
+  }
+
+  onToggleIsDone(todo: ITodo) {
+    this.toggleIsDone.emit(todo);
   }
 }

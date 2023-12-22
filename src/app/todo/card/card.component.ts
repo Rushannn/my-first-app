@@ -12,9 +12,9 @@ export class CardComponent implements OnInit {
 
   @Output() deleteCard: EventEmitter<ITodo> = new EventEmitter<ITodo>();
   @Output() editCard: EventEmitter<void> = new EventEmitter<void>();
+  @Output() toggleIsDone = new EventEmitter<ITodo>();
 
   ngOnInit(): void {
-    // console.log('Todo', this.todo)
   }
 
   onEdit() {
@@ -23,13 +23,10 @@ export class CardComponent implements OnInit {
 
   onDelete() {
     this.deleteCard.emit(this.todo);
-    // console.log('todo', this.todo)
   }
 
-  onToggleIsDone(event: any) {
-    console.log('event', event)
+  onToggleIsDone() {
+    this.toggleIsDone.emit(this.todo);
   }
-
-
 }
 

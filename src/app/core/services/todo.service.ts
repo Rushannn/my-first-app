@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { environment } from 'src/environments/environment.development';
+import { ITodo } from '../models/ITodo.model';
 
 
 
@@ -16,12 +17,22 @@ export class TodoService {
   ) { }
 
   getTodo() {
-    const url = `${environment.api_url}/todo`
+    const url = `${environment.api_url}/todo`;
     return this.http.get<any>(url);
   }
 
   deleteTodo(id: number) {
-    const url = `${environment.api_url}/todo/${id}`
+    const url = `${environment.api_url}/todo/${id}`;
     return this.http.delete<any>(url);
+  }
+
+  editTodo(todo: ITodo) {
+    const payload = {
+      name: todo.name,
+      isDone: todo.isDone,
+      date: todo.date
+    }
+    const url = `${environment.api_url}/todo/${todo.id}`;
+    return this.http.patch<any>(url, payload)
   }
 }

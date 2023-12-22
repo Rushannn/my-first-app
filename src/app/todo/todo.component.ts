@@ -31,12 +31,16 @@ export class TodoComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
-  onDeleteCard(todo: ITodo) {
+  public onDeleteCard(todo: ITodo) {
     this.deleteTodo(todo.id);
   }
 
-  onEditCard(todo: ITodo) {
+  public onEditCard(todo: ITodo) {
     this.cardToEdit = todo;
+  }
+
+  public onToggleIsDone(todo: ITodo) {
+    this.editTodo(todo);
   }
 
   saveEdit(todo: ITodo): void {
@@ -47,7 +51,7 @@ export class TodoComponent implements OnInit, OnDestroy {
     });
   }
 
-  getTodo() {
+  private getTodo() {
     this.todoService.getTodo()
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe({
@@ -62,7 +66,7 @@ export class TodoComponent implements OnInit, OnDestroy {
       );
   }
 
-  deleteTodo(id: number) {
+  private deleteTodo(id: number) {
     this.todoService.deleteTodo(id)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(
@@ -74,4 +78,15 @@ export class TodoComponent implements OnInit, OnDestroy {
         }
       );
   }
+
+  private editTodo(todo: ITodo) {
+    this.todoService.editTodo(todo)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: (res) => console.log('editTodo', res),
+        error: (err) => console.log('Error', err)
+      }
+      )
+  }
+
 }

@@ -11,10 +11,12 @@
       <mat-card-subtitle>{{ todo.date }}</mat-card-subtitle>
     </mat-card-header>
     <mat-checkbox
-    (change)="onToggleIsDone($event)"
-     [(ngModel)]="todo.isDone" class="example-margin"
+      (change)="onToggleIsDone()"
+      [(ngModel)]="todo.isDone"
+      class="example-margin"
       >Done</mat-checkbox
     >
+
     <mat-card-actions>
       <button mat-button (click)="onEdit()">Edit</button>
       <button mat-button (click)="onDelete()">Delete</button>

@@ -1,8 +1,27 @@
 <div class="container">
-  <app-card
-    *ngFor="let todo of todoList"
-    [todo]="todo"
-    (deleteCard)="onDelete($event)"
-    (editCard)="onEdit(todo)"
-  ></app-card>
+
+  <div class="left-list list">
+    <ng-container *ngFor="let todo of todoList">
+      <app-card
+      *ngIf="!todo.isDone"
+      [todo]="todo"
+      (deleteCard)="onDelete($event)"
+      (editCard)="onEdit(todo)"
+      (toggleIsDone)="onToggleIsDone($event)"
+    ></app-card>
+    </ng-container>
+  </div>
+
+  <div class="right-list list">
+    <ng-container *ngFor="let todo of todoList">
+      <app-card
+      *ngIf="todo.isDone"
+      [todo]="todo"
+      (deleteCard)="onDelete($event)"
+      (editCard)="onEdit(todo)"
+      (toggleIsDone)="onToggleIsDone($event)"
+    ></app-card>
+    </ng-container>
+  </div>
+
 </div>
