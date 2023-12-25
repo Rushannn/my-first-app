@@ -6,6 +6,7 @@ import { CardComponent } from './card/card.component';
 import { CardEditComponent } from './card-edit/card-edit.component';
 import { MaterialModule } from '../shared/material/material.module';
 import { FormsModule } from '@angular/forms';
+import { CardEditModalComponent } from './card-edit-modal/card-edit-modal.component';
 
 
 
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
     TodoComponent,
     CardsListComponent,
     CardComponent,
-    CardEditComponent
+    CardEditComponent,
+    CardEditModalComponent
   ],
   imports: [
     CommonModule,

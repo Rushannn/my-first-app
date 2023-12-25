@@ -17,8 +17,8 @@ export class CardsListComponent {
     console.log('todo in todoListComponent', todo)
   }
 
-  onEdit(todo: ITodo) {
-    this.editCard.emit(todo);
+  onEdit(editedTodo: ITodo) {
+    this.editCard.emit(editedTodo);
   }
 
   onToggleIsDone(todo: ITodo) {

@@ -6,7 +6,7 @@
       *ngIf="!todo.isDone"
       [todo]="todo"
       (deleteCard)="onDelete($event)"
-      (editCard)="onEdit(todo)"
+      (editCard)="onEdit($event)"
       (toggleIsDone)="onToggleIsDone($event)"
     ></app-card>
     </ng-container>
@@ -18,7 +18,7 @@
       *ngIf="todo.isDone"
       [todo]="todo"
       (deleteCard)="onDelete($event)"
-      (editCard)="onEdit(todo)"
+      (editCard)="onEdit($event)"
       (toggleIsDone)="onToggleIsDone($event)"
     ></app-card>
     </ng-container>

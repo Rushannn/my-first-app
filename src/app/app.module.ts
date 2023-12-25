@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 import { TodoModule } from './todo/todo.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { TodoModule } from './todo/todo.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    TodoModule
+    TodoModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

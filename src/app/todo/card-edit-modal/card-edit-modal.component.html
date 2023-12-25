@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Edit todo</h1>
+<div mat-dialog-content>
+  <div class="mat-dialog-content">
+  <!-- <p>What's your favorite animal?</p> -->
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Date</mat-label>
+    <input matInput [(ngModel)]="data.date">
+  </mat-form-field>
+</div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

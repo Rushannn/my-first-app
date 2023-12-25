@@ -1,5 +1,5 @@
 export interface ITodo {
-  created_at: number
+  created_at?: number
   date: string
   id: number
   isDone: boolean

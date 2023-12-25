@@ -10,7 +10,7 @@ import { TodoService } from '../core/services/todo.service';
 })
 export class TodoComponent implements OnInit, OnDestroy {
   name!: string;
-  cardToEdit: ITodo | undefined;
+  // cardToEdit: ITodo | undefined;
   todoClickInfo?: ITodo;
 
   todoListMain: ITodo[] = [];
@@ -35,8 +35,8 @@ export class TodoComponent implements OnInit, OnDestroy {
     this.deleteTodo(todo.id);
   }
 
-  public onEditCard(todo: ITodo) {
-    this.cardToEdit = todo;
+  public onEditCard(editedTodo: ITodo) {
+    this.editTodo(editedTodo)
   }
 
   public onToggleIsDone(todo: ITodo) {
@@ -83,10 +83,17 @@ export class TodoComponent implements OnInit, OnDestroy {
     this.todoService.editTodo(todo)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe({
-        next: (res) => console.log('editTodo', res),
+        next: (res) => {
+          this.todoListMain = this.todoListMain.map((item) => {
+            if (item.id === res.id) {
+              return res;
+            } else {
+              return item;
+            }
+          });
+        },
         error: (err) => console.log('Error', err)
-      }
-      )
+      })
   }
 
 }

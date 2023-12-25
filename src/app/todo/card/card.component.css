@@ -1,6 +1,12 @@
-
-
-
 mat-card {
   margin-bottom: 10px;
+}
+
+.mat-card-header-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon-edit {
+  cursor: pointer;
 }
