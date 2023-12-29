@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TodoComponent } from './todo/todo.component';
+import { AuthComponent } from './features/auth/auth.component';
 
 const appRoutes: Routes = [
   {
     path: 'todo',
-    loadChildren: () => import('./todo/todo.module').then(m => m.TodoModule),
+    component: TodoComponent
   },
   {
     path: 'auth',
-    loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule),
+    component: AuthComponent
   },
-  { path: '', redirectTo: '/auth', pathMatch: 'full' }
+  { path: '', redirectTo: '/todo', pathMatch: 'full' }
 ];
 
 
@@ -19,3 +21,5 @@ const appRoutes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+// loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule),

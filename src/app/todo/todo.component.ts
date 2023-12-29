@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ITodo } from '../core/models/ITodo.model';
 import { Subject, takeUntil } from 'rxjs';
 import { TodoService } from '../core/services/todo.service';
+import { TodoState } from '../core/services/todo.state';
 
 @Component({
   selector: 'app-todo',
@@ -16,20 +17,29 @@ export class TodoComponent implements OnInit, OnDestroy {
   todoListMain: ITodo[] = [];
   $event1: any;
   private unsubscribe$ = new Subject<void>();
+  todos$ = this.todoState.todos$
 
   constructor(
     private readonly todoService: TodoService,
+    private readonly todoState: TodoState
   ) {
   }
 
   ngOnInit(): void {
-    this.getTodo();
+    this.todoState.todos$
+    .subscribe(
+      (res) => {
+        this.todoListMain = res;
+      }
+    )
   }
 
   ngOnDestroy() {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
+
+
 
   public onDeleteCard(todo: ITodo) {
     this.deleteTodo(todo.id);
@@ -50,6 +60,8 @@ export class TodoComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+
 
   private getTodo() {
     this.todoService.getTodo()
