@@ -17,6 +17,10 @@ export class TodoState {
     this.read();
   }
 
+  get todos() {
+    return this.todosStateSubject.getValue();
+  }
+
   read() {
     this.todoService.getTodo()
       .subscribe(
@@ -29,6 +33,41 @@ export class TodoState {
           }
         }
       );
+  }
+
+  create(todo: ITodo) { }
+
+  update(todo: ITodo) {
+    this.todoService.editTodo(todo)
+      .subscribe({
+        next: ((responce) => {
+          const upadatedTodos: ITodo[] = this.todos.map(item => {
+            if (item.id === todo.id) {
+              return todo;
+            } else {
+              return item;
+            }
+          });
+          this.todosStateSubject.next(upadatedTodos);
+        }),
+        error: ((error) => {
+          console.error('Todo update error', error)
+        })
+      })
+  }
+
+  delete(id: number) {
+    console.log(' deleteTodo in state')
+    this.todoService.deleteTodo(id)
+      .subscribe(
+        {
+          next: (res) => {
+            const newTodos: ITodo[] = this.todos.filter(item => item.id !== id);
+            this.todosStateSubject.next(newTodos);
+          },
+          error: (err) => console.error('Todo delete error', err)
+        }
+      )
   }
 
 }

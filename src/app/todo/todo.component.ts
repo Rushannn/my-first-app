@@ -9,103 +9,26 @@ import { TodoState } from '../core/services/todo.state';
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css']
 })
-export class TodoComponent implements OnInit, OnDestroy {
-  name!: string;
-  // cardToEdit: ITodo | undefined;
-  todoClickInfo?: ITodo;
-
-  todoListMain: ITodo[] = [];
-  $event1: any;
-  private unsubscribe$ = new Subject<void>();
+export class TodoComponent {
   todos$ = this.todoState.todos$
 
   constructor(
-    private readonly todoService: TodoService,
     private readonly todoState: TodoState
-  ) {
-  }
-
-  ngOnInit(): void {
-    this.todoState.todos$
-    .subscribe(
-      (res) => {
-        this.todoListMain = res;
-      }
-    )
-  }
-
-  ngOnDestroy() {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
-  }
-
-
+  ) { }
 
   public onDeleteCard(todo: ITodo) {
-    this.deleteTodo(todo.id);
+    this.todoState.delete(todo.id);
   }
 
   public onEditCard(editedTodo: ITodo) {
-    this.editTodo(editedTodo)
+    this.todoState.update(editedTodo);
   }
 
   public onToggleIsDone(todo: ITodo) {
-    this.editTodo(todo);
+    this.todoState.update(todo);
   }
 
-  saveEdit(todo: ITodo): void {
-    this.todoListMain.map((thisTodo: ITodo) => {
-      if (thisTodo.id === todo.id) {
-        thisTodo = todo;
-      }
-    });
+  public onAddTodo(){
+
   }
-
-
-
-  private getTodo() {
-    this.todoService.getTodo()
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe({
-        next: (res) => {
-          console.log('res', res);
-          this.todoListMain = res;
-        },
-        error: (err) => {
-          console.error('Error', err);
-        },
-      }
-      );
-  }
-
-  private deleteTodo(id: number) {
-    this.todoService.deleteTodo(id)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(
-        (res) => {
-          this.getTodo();
-        },
-        (err) => {
-          console.error('Error', err);
-        }
-      );
-  }
-
-  private editTodo(todo: ITodo) {
-    this.todoService.editTodo(todo)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe({
-        next: (res) => {
-          this.todoListMain = this.todoListMain.map((item) => {
-            if (item.id === res.id) {
-              return res;
-            } else {
-              return item;
-            }
-          });
-        },
-        error: (err) => console.log('Error', err)
-      })
-  }
-
 }
