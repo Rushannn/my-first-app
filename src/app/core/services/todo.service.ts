@@ -12,7 +12,6 @@ import { Observable } from 'rxjs';
 })
 export class TodoService {
 
-
   constructor(
     private http: HttpClient,
   ) { }
@@ -23,6 +22,7 @@ export class TodoService {
   }
 
   deleteTodo(id: number) {
+    console.log(' deleteTodo in service')
     const url = `${environment.api_url}/todo/${id}`;
     return this.http.delete<any>(url);
   }

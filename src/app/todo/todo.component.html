@@ -1,14 +1,19 @@
 <p>todo works!</p>
 <div class="content">
-  <app-cards-list
-    [todoList]="todoListMain"
+
+  <button mat-raised-button class="todo-add-btn" color="primary"
+  (click)="onAddTodo()"
+  >Primary</button>
+
+  <ng-container *ngIf="todos$ | async as todos">
+
+    <app-cards-list
+    [todoList]="todos"
     (deleteCard)="onDeleteCard($event)"
     (editCard)="onEditCard($event)"
     (toggleIsDone)="onToggleIsDone($event)"
   ></app-cards-list>
 
-  <!-- <app-card-edit
-    [todoToEdit]="cardToEdit"
-    (editCard1)="saveEdit($event)"
-  ></app-card-edit> -->
+  </ng-container>
+
 </div>
