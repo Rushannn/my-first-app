@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable, subscribeOn } from "rxjs";
 import { ITodo } from "../models/ITodo.model";
 import { TodoService } from "./todo.service";
 
@@ -35,7 +35,22 @@ export class TodoState {
       );
   }
 
-  create(todo: ITodo) { }
+  create(payload: {
+    name: string,
+    isDone: boolean,
+    date: string
+  }) {
+    this.todoService.createTodo(payload)
+      .subscribe({
+        next: ((res) => {
+
+        }),
+        error: ((error) => {
+          console.error('Todo create error', error)
+        })
+
+      })
+  }
 
   update(todo: ITodo) {
     this.todoService.editTodo(todo)

@@ -36,4 +36,13 @@ export class TodoService {
     const url = `${environment.api_url}/todo/${todo.id}`;
     return this.http.patch<any>(url, payload)
   }
+
+  createTodo(payload: {
+    name: string,
+    isDone: boolean,
+    date: string
+  }) {
+    const url = `${environment.api_url}/todo`;
+    return this.http.post<any>(url, payload)
+  }
 }
