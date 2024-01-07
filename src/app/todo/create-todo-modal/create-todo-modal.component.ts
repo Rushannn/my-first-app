@@ -4,6 +4,11 @@ import { CardEditModalComponent } from '../card-edit-modal/card-edit-modal.compo
 import { ITodo } from 'src/app/core/models/ITodo.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+interface CreateTodoForm {
+  name: string;
+  date: string;
+}
+
 @Component({
   selector: 'app-create-todo-modal',
   templateUrl: './create-todo-modal.component.html',
@@ -19,10 +24,10 @@ export class CreateTodoModalComponent {
     private fb: FormBuilder,
   ) {
     this.form = this.fb.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       date: ['', [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)]]
     });
-   }
+  }
 
   onClose(): void {
     this.dialogRef.close();
