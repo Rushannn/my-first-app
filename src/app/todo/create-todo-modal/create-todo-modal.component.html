@@ -1,1 +1,15 @@
-<p>create-todo-modal works!</p>
+<mat-dialog-content>
+  <h2>Добавить элемент</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput formControlName="name" placeholder="Name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="date" placeholder="Date (YYYY-MM-DD)">
+    </mat-form-field>
+    <mat-dialog-actions>
+      <button mat-button (click)="onClose()">Отмена</button>
+      <button mat-button color="primary" type="submit">Сохранить</button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

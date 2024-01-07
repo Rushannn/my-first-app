@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from 'src/environments/environment.development';
 import { ITodo } from '../models/ITodo.model';
 import { Observable } from 'rxjs';
+import { ITodoForCreate } from '../models/ITodoForCreate';
 
 
 
@@ -34,6 +35,11 @@ export class TodoService {
       date: todo.date
     }
     const url = `${environment.api_url}/todo/${todo.id}`;
-    return this.http.patch<any>(url, payload)
+    return this.http.patch<any>(url, payload);
+  }
+
+  createTodo(payload:ITodoForCreate) {
+    const url = `${environment.api_url}/todo`;
+    return this.http.post<any>(url, payload);
   }
 }

@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { ITodo } from "../models/ITodo.model";
 import { TodoService } from "./todo.service";
+import { ITodoForCreate } from "../models/ITodoForCreate";
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,19 @@ export class TodoState {
       );
   }
 
-  create(todo: ITodo) { }
+  create(todo: ITodoForCreate) {
+    this.todoService.createTodo(todo)
+      .subscribe({
+        next: (responce) => {
+          const updatedTodos: ITodo[] = [...this.todos, responce];
+          console.log('updatedTodos', updatedTodos)
+          this.todosStateSubject.next(updatedTodos);
+        },
+        error: (error) => {
+          console.error('Error create Todo', error)
+        }
+      })
+  }
 
   update(todo: ITodo) {
     this.todoService.editTodo(todo)

@@ -5,7 +5,7 @@ import { CardsListComponent } from './cards-list/cards-list.component';
 import { CardComponent } from './card/card.component';
 import { CardEditComponent } from './card-edit/card-edit.component';
 import { MaterialModule } from '../shared/material/material.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardEditModalComponent } from './card-edit-modal/card-edit-modal.component';
 import { CreateTodoModalComponent } from './create-todo-modal/create-todo-modal.component';
 
@@ -24,6 +24,7 @@ import { CreateTodoModalComponent } from './create-todo-modal/create-todo-modal.
     CommonModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     TodoComponent,
