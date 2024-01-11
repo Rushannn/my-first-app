@@ -33,20 +33,24 @@ export class CardComponent implements OnInit {
     this.toggleIsDone.emit(this.todo);
   }
 
-  openDialog(): void {
+  openDialog(event: Event): void {
+    console.log('event', event)
+    event.stopPropagation();
     const dialogRef = this.dialog.open(CardEditModalComponent, {
       data: { name: this.todo?.name, date: this.todo?.date },
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('result', result);
-      const editedCard: ITodo = {
-        name: result.name,
-        date: result.date,
-        id: this.todo?.id,
-        isDone: this.todo?.isDone
+      if (result) {
+        console.log('result', result);
+        const editedCard: ITodo = {
+          name: result.name,
+          date: result.date,
+          id: this.todo?.id,
+          isDone: this.todo?.isDone
+        }
+        this.editCard.emit(editedCard);
       }
-      this.editCard.emit(editedCard);
     });
   }
 }

@@ -8,6 +8,8 @@ import { MaterialModule } from '../shared/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardEditModalComponent } from './card-edit-modal/card-edit-modal.component';
 import { CreateTodoModalComponent } from './create-todo-modal/create-todo-modal.component';
+import { TodoDetailComponent } from './todo-detail/todo-detail.component';
+import { TodoRoutingModule } from './todo.routing';
 
 
 
@@ -18,13 +20,15 @@ import { CreateTodoModalComponent } from './create-todo-modal/create-todo-modal.
     CardComponent,
     CardEditComponent,
     CardEditModalComponent,
-    CreateTodoModalComponent
+    CreateTodoModalComponent,
+    TodoDetailComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TodoRoutingModule
   ],
   exports: [
     TodoComponent,

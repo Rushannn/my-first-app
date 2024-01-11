@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ITodo } from '../../core/models/ITodo.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cards-list',
@@ -12,6 +13,10 @@ export class CardsListComponent {
   @Output() editCard: EventEmitter<ITodo> = new EventEmitter<ITodo>();
   @Output() toggleIsDone = new EventEmitter<ITodo>();
 
+  constructor(private router: Router) {
+
+  }
+
   onDelete(todo: ITodo) {
     this.deleteCard.emit(todo);
     console.log('todo in todoListComponent', todo)
@@ -23,5 +28,9 @@ export class CardsListComponent {
 
   onToggleIsDone(todo: ITodo) {
     this.toggleIsDone.emit(todo);
+  }
+
+  redirectToDetail(id: number) {
+    this.router.navigate(['/todo', id]);
   }
 }

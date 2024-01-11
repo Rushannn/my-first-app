@@ -8,6 +8,7 @@
       (deleteCard)="onDelete($event)"
       (editCard)="onEdit($event)"
       (toggleIsDone)="onToggleIsDone($event)"
+      (click)="redirectToDetail(todo.id)"
     ></app-card>
     </ng-container>
   </div>
@@ -20,6 +21,7 @@
       (deleteCard)="onDelete($event)"
       (editCard)="onEdit($event)"
       (toggleIsDone)="onToggleIsDone($event)"
+      (click)="redirectToDetail(todo.id)"
     ></app-card>
     </ng-container>
   </div>
