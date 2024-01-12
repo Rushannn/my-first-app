@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable, filter, map } from "rxjs";
 import { ITodo } from "../models/ITodo.model";
 import { TodoService } from "./todo.service";
 import { ITodoForCreate } from "../models/ITodoForCreate";
@@ -11,6 +11,7 @@ export class TodoState {
 
   private todosStateSubject = new BehaviorSubject<ITodo[]>([]);
   public todos$: Observable<ITodo[]> = this.todosStateSubject.asObservable();
+
 
   constructor(
     private todoService: TodoService
@@ -83,6 +84,11 @@ export class TodoState {
       )
   }
 
+  public getTodoByIdAsObservable(id: number): Observable<ITodo | undefined> {
+    return this.todos$.pipe(
+      map(todos => todos.find(todo => todo.id === id))
+    );
+  }
 }
 
 

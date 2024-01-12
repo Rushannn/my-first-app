@@ -1,1 +1,30 @@
-<p>todo-detail works!</p>
+<ng-container *ngIf="(todo$ | async) as todo">
+  <mat-card>
+    <div class="mat-card-header-box">
+      <mat-card-header>
+        <mat-card-title>{{ todo.name }}</mat-card-title>
+        <mat-card-subtitle>{{ todo.date }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-icon
+        (click)="openDialog()"
+        aria-hidden="false"
+        aria-label="Example home icon"
+        fontIcon="edit"
+        class="icon-edit"
+      ></mat-icon>
+    </div>
+
+    <mat-checkbox
+      (change)="onToggleIsDone()"
+      [(ngModel)]="todo.isDone"
+      class="example-margin"
+      >Done</mat-checkbox
+    >
+
+    <mat-card-actions>
+      <!-- <button mat-button (click)="onEdit()">Edit</button> -->
+      <!-- <button mat-button (click)="onDelete()">Delete</button> -->
+    </mat-card-actions>
+  </mat-card>
+</ng-container>
