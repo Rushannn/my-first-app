@@ -9,12 +9,14 @@ import { HeaderComponent } from './core/layout/header/header.component';
 import { MaterialModule } from './shared/material/material.module';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
+import { AuthComponent } from './features/auth/auth.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +24,8 @@ import { AppRoutingModule } from './app.routing';
     TodoModule,
     NoopAnimationsModule,
     MaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
