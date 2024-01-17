@@ -1,25 +1,28 @@
 <form class="auth-form" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+
+  <ng-container *ngIf="!isLoginForm">
+    <label for="name">Name</label>
+    <input type="name" id="name" ngModel name="name" required />
+  </ng-container>
+
   <label for="email">Email</label>
   <input type="email" id="emil" ngModel name="email" required />
 
   <label for="password">Password</label>
-  <input type="password" id="password" name="password" ngModel required />
+  <input
+    type="password"
+    id="password"
+    name="password"
+    ngModel
+    required
+    minlength="6"
+  />
 
-  <button type="submit" [disabled]="authForm.invalid">{{ isLoginForm ? "Login" : "Sign Up" }}</button>
+  <button type="submit" [disabled]="authForm.invalid">
+    {{ isLoginForm ? "Login" : "Sign Up" }}
+  </button>
   <button type="button" (click)="toggleForm()">
-    Change to {{ !isLoginForm ? "login" : "sign Up" }}
+    Change to {{ !isLoginForm ? "login" : "sign up" }}
   </button>
 </form>
 
-<!-- <form class="auth-form" [(ngModel)]="authForm">
-  <label for="email">Email</label>
-  <input type="email" id="email" [(ngModel)]="authForm.email" name="email" required />
-
-  <label for="password">Password</label>
-  <input type="password" id="password" [(ngModel)]="authForm.password" name="password" required />
-
-  <button type="submit">{{ isLoginForm ? "Login" : "Sign Up" }}</button>
-  <button type="button" (click)="toggleForm()">
-    Change to {{ isLoginForm ? "Sign Up" : "Login" }}
-  </button>
-</form> -->
