@@ -8,12 +8,14 @@ import { IAuth } from "../models/IAuth.model";
 })
 export class AuthService {
 
+  private api = environment.AUTH_URL
+
   constructor(
     private http: HttpClient
   ) { }
 
   signUp(credentials: IAuth) {
-    const url = `${environment.api_url}/signup`;
+    const url = `${this.api}/auth/signup`;
     return this.http.post<any>(url, credentials);
   }
 
