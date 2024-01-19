@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthState } from 'src/app/core/services/auth.state';
 
 @Component({
   selector: 'app-auth',
@@ -12,7 +12,7 @@ export class AuthComponent {
   isLoginForm: boolean = false;
 
   constructor(
-    private authService: AuthService
+    private authState: AuthState
   ) { }
 
   toggleForm() {
@@ -23,16 +23,8 @@ export class AuthComponent {
     if (this.isLoginForm) {
       //login
     } else {
-      this.authService.signUp(form.value)
-        .subscribe({
-          next: res => {
-            console.log('res', res)
-          },
-          error: err => {
-            console.error('Ошибка регистрации', err)
-          }
-        }
-        )
+      console.log('AuthComponent signup')
+      this.authState.signup(form.value);
     }
 
     form.reset();
