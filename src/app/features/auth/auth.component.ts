@@ -21,7 +21,7 @@ export class AuthComponent {
 
   onSubmit(form: NgForm) {
     if (this.isLoginForm) {
-      //login
+      this.authState.login(form.value)
     } else {
       console.log('AuthComponent signup')
       this.authState.signup(form.value);
@@ -29,7 +29,4 @@ export class AuthComponent {
 
     form.reset();
   }
-
-
-
 }

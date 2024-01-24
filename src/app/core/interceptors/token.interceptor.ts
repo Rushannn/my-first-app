@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { AuthState } from "../services/auth.state";
 
-@Injectable({ providedIn: "root" })
+@Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
   constructor(
@@ -14,7 +14,7 @@ export class TokenInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = this.authState.authTokenSubject.getValue()
+    const token = this.authState.authTokenSubject.getValue();
 
     const request = req.clone({
       setHeaders: {
@@ -22,6 +22,5 @@ export class TokenInterceptor implements HttpInterceptor {
       },
     });
     return next.handle(request);
-
   }
 }
