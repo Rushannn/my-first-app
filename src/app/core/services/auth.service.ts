@@ -19,5 +19,10 @@ export class AuthService {
     return this.http.post<any>(url, credentials);
   }
 
+  login(credentials: IAuth) {
+    const url = `${this.api}/auth/login`;
+    return this.http.post<{ authToken: string }>(url, credentials);
+  }
+
 
 }
