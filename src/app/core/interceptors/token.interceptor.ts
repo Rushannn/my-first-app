@@ -2,19 +2,20 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/c
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { AuthState } from "../services/auth.state";
+import { JwtService } from "../services/jwt.service";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
   constructor(
-    private authState: AuthState
+    private jwt: JwtService
   ) { }
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = this.authState.authTokenSubject.getValue();
+    const token = this.jwt.getToken();
 
     const request = req.clone({
       setHeaders: {
