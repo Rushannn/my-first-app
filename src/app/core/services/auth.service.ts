@@ -33,5 +33,4 @@ export class AuthService {
     return this.http.get<IAuth>(url);
   }
 
-
 }

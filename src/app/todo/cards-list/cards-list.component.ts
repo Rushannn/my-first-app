@@ -19,7 +19,6 @@ export class CardsListComponent {
 
   onDelete(todo: ITodo) {
     this.deleteCard.emit(todo);
-    console.log('todo in todoListComponent', todo)
   }
 
   onEdit(editedTodo: ITodo) {

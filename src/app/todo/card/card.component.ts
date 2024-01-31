@@ -34,7 +34,6 @@ export class CardComponent implements OnInit {
   }
 
   openDialog(event: Event): void {
-    console.log('event', event)
     event.stopPropagation();
     const dialogRef = this.dialog.open(CardEditModalComponent, {
       data: { name: this.todo?.name, date: this.todo?.date },
@@ -42,7 +41,6 @@ export class CardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('result', result);
         const editedCard: ITodo = {
           name: result.name,
           date: result.date,

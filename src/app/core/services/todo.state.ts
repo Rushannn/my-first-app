@@ -42,7 +42,6 @@ export class TodoState {
       .subscribe({
         next: (responce) => {
           const updatedTodos: ITodo[] = [...this.todos, responce];
-          console.log('updatedTodos', updatedTodos)
           this.todosStateSubject.next(updatedTodos);
         },
         error: (error) => {
@@ -71,7 +70,6 @@ export class TodoState {
   }
 
   delete(id: number) {
-    console.log(' deleteTodo in state')
     this.todoService.deleteTodo(id)
       .subscribe(
         {
