@@ -11,22 +11,6 @@ import { AuthState } from './core/services/auth.state';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent  {
   title = 'my-first-app';
-
-  constructor(
-    private authState: AuthState
-  ) { }
-
-
-  ngOnInit(): void {
-    const token: string | undefined | null = localStorage.getItem('token')
-    if (token) {
-      this.authState.authTokenSubject.next(token);
-      console.log('ngOnInit',token)
-    }
-  }
-
-
-
 }

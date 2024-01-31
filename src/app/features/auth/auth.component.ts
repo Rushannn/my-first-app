@@ -23,7 +23,6 @@ export class AuthComponent {
     if (this.isLoginForm) {
       this.authState.login(form.value)
     } else {
-      console.log('AuthComponent signup')
       this.authState.signup(form.value);
     }
 

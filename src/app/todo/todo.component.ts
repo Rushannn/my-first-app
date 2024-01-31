@@ -37,7 +37,6 @@ export class TodoComponent {
 
     dialogRef.afterClosed()
     .subscribe(result => {
-      console.log('result', result);
       const createdTodo: ITodoForCreate = {
         name: result.name,
         date: result.date,
